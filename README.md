@@ -1,3 +1,3 @@
-# chat-room
+# chat-app
 
-Build a chat room app with `React CLI`, `Typescript`, `Tailwind CSS`, `Node.js` and `Socket.io`.
+Build a chat app with `React CLI`, `Typescript`, `Tailwind CSS`, `Node.js` and `Socket.io`.
