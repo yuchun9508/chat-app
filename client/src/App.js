@@ -1,12 +1,17 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home.tsx';
 import socketIO from 'socket.io-client';
 
 const socket = socketIO.connect('http://localhost:4000');
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        {/* <Route path="/chat-room" element={}></Route> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
