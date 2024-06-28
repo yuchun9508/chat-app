@@ -11,7 +11,7 @@ const MessageBubble = (props: MessageBubbleProps) => {
 
   return (
     <div className="w-full pb-7">
-      <div className={`${isPrimary && 'ml-auto'} w-2/5`}>
+      <div className={`${isPrimary && 'ml-auto'} w-3/4 xl:w-2/5`}>
         <div className={`${isPrimary && 'hidden'} text-sky-500 pl-3`}>
           {userName}
         </div>
