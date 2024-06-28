@@ -1,5 +1,5 @@
 import React from 'react';
-import ArrowForwardIcon from './ArrowForwardIcon.tsx';
+import ArrowForwardIcon from '../icons/ArrowForwardIcon.tsx';
 
 const MessageForm = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import GroupIcon from './GroupIcon.tsx';
-import CloseIcon from './CloseIcon.tsx';
+import GroupIcon from '../icons/GroupIcon.tsx';
+import CloseIcon from '../icons/CloseIcon.tsx';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
