@@ -19,6 +19,6 @@
 
 @layer components {
   .btn-primary {
-    @apply py-4 px-5 bg-slate-800 text-slate-50 text-2xl rounded-lg;
+    @apply py-4 px-5 bg-slate-800 text-slate-50 text-xl md:text-2xl rounded-lg;
   }
 }
