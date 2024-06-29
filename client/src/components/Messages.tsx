@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { SocketContext } from '../App';
 import { SocketMessage } from './MessageForm';
 import MessageBubble from './MessageBubble.tsx';
 
 const Messages = () => {
   const socket = useContext(SocketContext);
+  const lastMessage = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<SocketMessage[]>([]);
 
   useEffect(() => {
@@ -13,9 +14,12 @@ const Messages = () => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    lastMessage.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   return (
     <>
-      {/* TODO: auto scroll for latest message */}
       {messages.map((message) =>
         sessionStorage.getItem('userName') === message.name ? (
           <MessageBubble key={message.id} message={message.text} isPrimary />
@@ -27,6 +31,7 @@ const Messages = () => {
           />
         )
       )}
+      <div ref={lastMessage} />
     </>
   );
 };
