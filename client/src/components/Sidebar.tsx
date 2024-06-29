@@ -24,7 +24,7 @@ const Sidebar = () => {
       <div
         className={`${
           !isOpen && '-translate-x-full'
-        } lg:translate-x-0 absolute top-0 lg:static w-80 lg:w-full bg-slate-900 text-slate-50 pl-8 lg:pl-14 pr-2 py-6 lg:py-10 flex flex-col h-screen transition-all
+        } lg:translate-x-0 absolute top-0 lg:static w-80 lg:w-full bg-slate-900 text-slate-50 pl-8 lg:pl-14 pr-2 py-6 lg:py-10 flex flex-col h-dvh transition-all
         `}
       >
         <button

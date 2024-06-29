@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-dvh bg-slate-50">
       <div className="w-72 md:w-1/3 m-auto">
         <h1 className="text-slate-800 text-center mb-16">Let's Chat!</h1>
         <form onSubmit={handleSubmit}>
@@ -45,7 +45,7 @@ const Home = () => {
             placeholder="Enter your name"
             className={`${
               isValid !== false ? 'border-slate-800' : 'border-red-500'
-            } w-full outline-none bg-transparent text-xl md:text-2xl text-slate-800 placeholder:text-slate-300 px-3 py-2 border-b`}
+            } w-full outline-none bg-transparent text-xl md:text-2xl text-slate-800 placeholder:text-slate-300 px-3 py-2 border-b rounded-none`}
             onChange={validatePattern}
           />
           <p

@@ -20,7 +20,7 @@ const ChatRoom = () => {
   return (
     <>
       {!sessionStorage.getItem('userName') && <Navigate to="/" replace />}
-      <div className="grid grid-cols-4 h-screen">
+      <div className="grid grid-cols-4 h-dvh">
         <div className="absolute lg:static lg:col-span-1">
           <Sidebar />
         </div>
