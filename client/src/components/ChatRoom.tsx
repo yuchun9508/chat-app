@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import MessageBubble from './MessageBubble.tsx';
+import React, { useEffect } from 'react';
 import Sidebar from './Sidebar.tsx';
-import MessageForm, { SocketMessage } from './MessageForm.tsx';
-import { SocketContext } from '../App.js';
+import MessageForm from './MessageForm.tsx';
 import { Navigate } from 'react-router-dom';
+import Messages from './Messages.tsx';
 
 const ChatRoom = () => {
-  const socket = useContext(SocketContext);
-  const [messages, setMessages] = useState<SocketMessage[]>([]);
-
   useEffect(() => {
-    socket.on('messageResponse', (data: SocketMessage) => {
-      setMessages((prevState) => [...prevState, data]);
-    });
-  }, [socket]);
+    const handleBeforeUnload = (e) => {
+      // TODO [FEATURE]: add leave confirmation dialog
+      sessionStorage.removeItem('userName');
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <>
@@ -26,21 +28,7 @@ const ChatRoom = () => {
           <div className="flex flex-col h-full divide-y bg-slate-50 px-7 py-5 md:px-14 md:py-10">
             <div className="flex-1 overflow-y-auto">
               <div className="max-h-0">
-                {messages.map((message) =>
-                  sessionStorage.getItem('userName') === message.name ? (
-                    <MessageBubble
-                      key={message.id}
-                      message={message.text}
-                      isPrimary
-                    />
-                  ) : (
-                    <MessageBubble
-                      key={message.id}
-                      message={message.text}
-                      userName={message.name}
-                    />
-                  )
-                )}
+                <Messages />
               </div>
             </div>
             <div className="pt-6 md:pt-10">
