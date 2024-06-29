@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import GroupIcon from '../icons/GroupIcon.tsx';
 import CloseIcon from '../icons/CloseIcon.tsx';
+import { SocketContext } from '../App.js';
+import { SocketNewUser } from './Home.tsx';
 
 const Sidebar = () => {
+  const socket = useContext(SocketContext);
+  const [users, setUsers] = useState<SocketNewUser[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    socket.on('newUserResponse', (data: SocketNewUser[]) => setUsers(data));
+  }, [socket]);
 
   return (
     <div>
@@ -25,45 +33,12 @@ const Sidebar = () => {
         >
           <CloseIcon />
         </button>
-        <h3 className="mb-6 lg:mb-10">In Room (3)</h3>
+        <h3 className="mb-6 lg:mb-10">In Room ({users.length})</h3>
         <div className="flex-1 overflow-y-auto">
           <ul className="max-h-0">
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
-            <li>Neque</li>
-            <li>Amklrmv</li>
-            <li>Encmlv</li>
+            {users.map((user) => (
+              <li key={user.socketID}>{user.userName}</li>
+            ))}
           </ul>
         </div>
       </div>

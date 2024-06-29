@@ -1,7 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SocketContext } from '../App';
+
+export type SocketNewUser = {
+  userName: string;
+  socketID: string;
+};
 
 const Home = () => {
+  const socket = useContext(SocketContext);
   const navigate = useNavigate();
   const userNameInput = useRef<HTMLInputElement>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
@@ -12,6 +19,10 @@ const Home = () => {
     const userName = userNameInput.current?.value.trim();
     if (userName && isValid) {
       sessionStorage.setItem('userName', userName);
+      socket.emit('newUser', {
+        userName,
+        socketID: socket.id,
+      } as SocketNewUser);
       navigate('/chat-room');
     } else {
       setIsValid(false);
